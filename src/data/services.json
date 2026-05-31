@@ -1,0 +1,74 @@
+[
+  {
+    "id": "1",
+    "slug": "family-law",
+    "title": "Family Law",
+    "icon": "Heart",
+    "description": "Compassionate legal guidance for divorce, custody, maintenance, domestic violence, and all family matters.",
+    "subServices": ["Divorce & Separation", "Child Custody & Guardianship", "Maintenance & Alimony", "Domestic Violence Protection", "Matrimonial Property Rights", "Adoption", "Will & Succession"],
+    "color": "#E91E63"
+  },
+  {
+    "id": "2",
+    "slug": "civil-law",
+    "title": "Civil Law",
+    "icon": "Scale",
+    "description": "Expert civil litigation covering property, contracts, recovery, consumer disputes, and succession matters.",
+    "subServices": ["Property & Land Disputes", "Contract Disputes", "Cheque Bounce (NI Act)", "Succession Certificate", "Consumer Disputes", "Motor Accident Claims", "Injunctions & Stays"],
+    "color": "#2196F3"
+  },
+  {
+    "id": "3",
+    "slug": "criminal-law",
+    "title": "Criminal Law",
+    "icon": "Shield",
+    "description": "Strong defence representation for bail applications, trial defence, FIR quashing, and all criminal matters.",
+    "subServices": ["Anticipatory Bail", "Regular Bail", "FIR Quashing", "Criminal Trial Defence", "Section 498A Defence", "Cyber Crime", "White Collar Crime"],
+    "color": "#F44336"
+  },
+  {
+    "id": "4",
+    "slug": "business-law",
+    "title": "Business Law",
+    "icon": "Briefcase",
+    "description": "Comprehensive legal support for businesses including partnership disputes, contracts, labour law, and compliance.",
+    "subServices": ["Partnership Disputes", "Contract Drafting & Review", "Labour Law Matters", "Business Registration", "Debt Recovery", "Commercial Litigation", "MSME Disputes"],
+    "color": "#4CAF50"
+  },
+  {
+    "id": "5",
+    "slug": "property-disputes",
+    "title": "Property Disputes",
+    "icon": "Home",
+    "description": "Specialist in resolving complex property disputes involving ancestral land, titles, revenue records, and encroachments.",
+    "subServices": ["Ancestral Property Claims", "Title Disputes", "Encroachment", "Revenue Record Correction", "Partition Suits", "Tenancy Disputes", "Registration Disputes"],
+    "color": "#FF9800"
+  },
+  {
+    "id": "6",
+    "slug": "legal-consultation",
+    "title": "Legal Consultation",
+    "icon": "MessageSquare",
+    "description": "Free initial consultations to assess your legal situation and advise on the best course of action.",
+    "subServices": ["Case Assessment", "Legal Strategy Planning", "Document Review", "Rights Advisory", "Pre-litigation Counsel", "Dispute Resolution Options"],
+    "color": "#9C27B0"
+  },
+  {
+    "id": "7",
+    "slug": "documentation-agreements",
+    "title": "Documentation & Agreements",
+    "icon": "FileText",
+    "description": "Professional drafting and review of all legal documents, agreements, affidavits, and contracts.",
+    "subServices": ["Sale Deeds", "Rent Agreements", "Partnership Deeds", "Affidavits", "Power of Attorney", "Will Drafting", "Name Change Documentation"],
+    "color": "#607D8B"
+  },
+  {
+    "id": "8",
+    "slug": "court-representation",
+    "title": "Court Representation",
+    "icon": "Gavel",
+    "description": "Strong and dedicated representation at Jalna District Court, Sessions Court, Family Court, and Magistrate Courts.",
+    "subServices": ["District Court", "Sessions Court", "Family Court", "Magistrate Court", "Consumer Forum", "Labour Tribunal", "High Court Matters"],
+    "color": "#795548"
+  }
+]
