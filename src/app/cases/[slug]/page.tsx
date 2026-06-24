@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, MapPin, Calendar, Clock, CheckCircle, Quote } from "lucide-react";
 import cases from "@/data/cases.json";
 import { SITE_CONFIG } from "@/lib/constants";
+import { createCasesBreadcrumbs } from "@/lib/breadcrumbs";
 
 export async function generateStaticParams() {
   return cases.map(c => ({ slug: c.slug }));
@@ -13,10 +14,34 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const c = cases.find(c => c.slug === slug);
   if (!c) return {};
+
+  const breadcrumbs = createCasesBreadcrumbs(SITE_CONFIG.url, c.title);
+
   return {
     title: `${c.title} | Case Study - Adv. Pavan Rathod`,
     description: c.summary,
+    keywords: [c.category, c.state, "case study", "legal case", ...SITE_CONFIG.keywords],
     alternates: { canonical: `${SITE_CONFIG.url}/cases/${c.slug}` },
+    openGraph: {
+      type: "website",
+      title: c.title,
+      description: c.summary,
+      url: `${SITE_CONFIG.url}/cases/${c.slug}`,
+      images: [
+        {
+          url: `${SITE_CONFIG.url}${SITE_CONFIG.ogImageUrl}`,
+          width: 1200,
+          height: 630,
+          alt: c.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: c.title,
+      description: c.summary,
+      images: [`${SITE_CONFIG.url}${SITE_CONFIG.ogImageUrl}`],
+    },
   };
 }
 

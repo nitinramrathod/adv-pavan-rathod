@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /privacy-policy
+Disallow: /terms-and-conditions
+Disallow: /legal-disclaimer
+Disallow: /cookie-policy
+
+Sitemap: https://advpavanrathod.in/api/sitemap

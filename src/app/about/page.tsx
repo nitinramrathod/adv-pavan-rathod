@@ -1,12 +1,33 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle, Award, MapPin, Scale, Phone, MessageCircle, BookOpen, Target, Heart } from "lucide-react";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, PAGE_METADATA } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "About Adv. Pavan Rathod | Lawyer in Jalna, Maharashtra",
-  description: "Learn about Advocate Pavan Rathod, BA. LL.B. — a dedicated legal advocate based in Jalna, Maharashtra practising Family Law, Criminal Law, Civil Law, Business Law, and Property Disputes.",
+  title: PAGE_METADATA.about.title,
+  description: PAGE_METADATA.about.description,
+  keywords: ["about advocate", "lawyer profile", "legal experience", ...SITE_CONFIG.keywords],
   alternates: { canonical: `${SITE_CONFIG.url}/about` },
+  openGraph: {
+    type: "profile",
+    title: PAGE_METADATA.about.title,
+    description: PAGE_METADATA.about.description,
+    url: `${SITE_CONFIG.url}/about`,
+    images: [
+      {
+        url: `${SITE_CONFIG.url}${SITE_CONFIG.profileImageUrl}`,
+        width: 600,
+        height: 600,
+        alt: SITE_CONFIG.fullName,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: PAGE_METADATA.about.title,
+    description: PAGE_METADATA.about.description,
+    images: [`${SITE_CONFIG.url}${SITE_CONFIG.profileImageUrl}`],
+  },
 };
 
 const timeline = [

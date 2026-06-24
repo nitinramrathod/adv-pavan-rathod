@@ -4,6 +4,8 @@ import Link from "next/link";
 import { ArrowLeft, Clock, User, Tag } from "lucide-react";
 import blogs from "@/data/blogs.json";
 import { SITE_CONFIG } from "@/lib/constants";
+import { createBlogBreadcrumbs } from "@/lib/breadcrumbs";
+import { createBreadcrumbSchema } from "@/lib/schema";
 import { formatDate } from "@/lib/utils";
 
 export async function generateStaticParams() {
@@ -14,11 +16,38 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const b = blogs.find(b => b.slug === slug);
   if (!b) return {};
+
+  const breadcrumbs = createBlogBreadcrumbs(SITE_CONFIG.url, b.title);
+
   return {
     title: `${b.title} | Adv. Pavan Rathod Blog`,
     description: b.excerpt,
+    keywords: [...b.tags, b.category, ...SITE_CONFIG.keywords],
+    authors: [{ name: b.author }],
     alternates: { canonical: `${SITE_CONFIG.url}/blog/${b.slug}` },
-    openGraph: { type: "article", title: b.title, description: b.excerpt, publishedTime: b.date, authors: [b.author] },
+    openGraph: {
+      type: "article",
+      title: b.title,
+      description: b.excerpt,
+      url: `${SITE_CONFIG.url}/blog/${b.slug}`,
+      images: [
+        {
+          url: `${SITE_CONFIG.url}${SITE_CONFIG.ogImageUrl}`,
+          width: 1200,
+          height: 630,
+          alt: b.title,
+        },
+      ],
+      publishedTime: b.date,
+      authors: [b.author],
+      tags: b.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: b.title,
+      description: b.excerpt,
+      images: [`${SITE_CONFIG.url}${SITE_CONFIG.ogImageUrl}`],
+    },
   };
 }
 
@@ -29,14 +58,30 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
 
   const related = blogs.filter(r => r.category === b.category && r.slug !== b.slug).slice(0, 3);
 
+  const breadcrumbs = createBlogBreadcrumbs(SITE_CONFIG.url, b.title);
+  const breadcrumbSchema = createBreadcrumbSchema(breadcrumbs);
+
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: b.title,
-    description: b.excerpt,
-    author: { "@type": "Person", name: b.author },
-    datePublished: b.date,
-    publisher: { "@type": "Organization", name: "Adv. Pavan Rathod" },
+    "@graph": [
+      {
+        "@type": "Article",
+        headline: b.title,
+        description: b.excerpt,
+        author: { "@type": "Person", name: b.author },
+        datePublished: b.date,
+        dateModified: b.date,
+        image: {
+          "@type": "ImageObject",
+          url: `${SITE_CONFIG.url}${SITE_CONFIG.ogImageUrl}`,
+          width: 1200,
+          height: 630,
+        },
+        publisher: { "@type": "Organization", name: "Adv. Pavan Rathod", logo: { "@type": "ImageObject", url: `${SITE_CONFIG.url}${SITE_CONFIG.profileImageUrl}` } },
+        mainEntityOfPage: `${SITE_CONFIG.url}/blog/${b.slug}`,
+      },
+      breadcrumbSchema,
+    ],
   };
 
   return (

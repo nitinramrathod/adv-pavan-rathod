@@ -3,12 +3,33 @@ import Link from "next/link";
 import { Clock, ArrowRight, Tag } from "lucide-react";
 import blogs from "@/data/blogs.json";
 import { formatDate } from "@/lib/utils";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, PAGE_METADATA } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Legal Insights & Blog | Adv. Pavan Rathod",
-  description: "Read expert legal articles and insights on Family Law, Criminal Law, Civil Law, and Business Law from Advocate Pavan Rathod, Jalna, Maharashtra.",
+  title: PAGE_METADATA.blog.title,
+  description: PAGE_METADATA.blog.description,
+  keywords: ["legal blog", "legal articles", "legal insights", "legal education", ...SITE_CONFIG.keywords],
   alternates: { canonical: `${SITE_CONFIG.url}/blog` },
+  openGraph: {
+    type: "website",
+    title: PAGE_METADATA.blog.title,
+    description: PAGE_METADATA.blog.description,
+    url: `${SITE_CONFIG.url}/blog`,
+    images: [
+      {
+        url: `${SITE_CONFIG.url}${SITE_CONFIG.ogImageUrl}`,
+        width: 1200,
+        height: 630,
+        alt: PAGE_METADATA.blog.title,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: PAGE_METADATA.blog.title,
+    description: PAGE_METADATA.blog.description,
+    images: [`${SITE_CONFIG.url}${SITE_CONFIG.ogImageUrl}`],
+  },
 };
 
 const catColors: Record<string, string> = {

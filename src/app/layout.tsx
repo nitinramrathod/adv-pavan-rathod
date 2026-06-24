@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SITE_CONFIG } from "@/lib/constants";
+import { createAttorneySchema, createLocalBusinessSchema, createWebsiteSchema } from "@/lib/schema";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FloatingActions from "@/components/layout/FloatingActions";
@@ -25,50 +26,104 @@ export const metadata: Metadata = {
     siteName: `Adv. Pavan Rathod - Lawyer in Jalna`,
     title: `${SITE_CONFIG.fullName} | Trusted Lawyer in Jalna, Maharashtra`,
     description: SITE_CONFIG.description,
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Advocate Pavan Rathod - Lawyer in Jalna" }],
+    images: [
+      {
+        url: `${SITE_CONFIG.url}${SITE_CONFIG.ogImageUrl}`,
+        width: 1200,
+        height: 630,
+        alt: "Advocate Pavan Rathod - Lawyer in Jalna",
+        type: "image/jpeg",
+      },
+      {
+        url: `${SITE_CONFIG.url}/og-image-square.jpg`,
+        width: 800,
+        height: 800,
+        alt: "Advocate Pavan Rathod - Lawyer in Jalna",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    site: "@advpavanrathod",
+    creator: "@advpavanrathod",
     title: `${SITE_CONFIG.fullName} | Lawyer in Jalna`,
     description: SITE_CONFIG.description,
-    images: ["/og-image.jpg"],
+    images: [`${SITE_CONFIG.url}${SITE_CONFIG.ogImageUrl}`],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 },
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
-  alternates: { canonical: SITE_CONFIG.url },
-  verification: { google: "your-google-verification-code" },
+  alternates: {
+    canonical: SITE_CONFIG.url,
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION_CODE || "your-google-verification-code",
+  },
+  category: "Legal Services",
+  classification: "Legal Services, Law Practice",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const attorneySchema = createAttorneySchema(
+    SITE_CONFIG.name,
+    SITE_CONFIG.fullName,
+    SITE_CONFIG.description,
+    SITE_CONFIG.phoneRaw,
+    SITE_CONFIG.email,
+    SITE_CONFIG.url,
+    `${SITE_CONFIG.url}${SITE_CONFIG.profileImageUrl}`,
+    SITE_CONFIG.address,
+    { latitude: "19.8459", longitude: "75.7849" },
+    { ratingValue: "5.0", reviewCount: "20" }
+  );
+
+  const localBusinessSchema = createLocalBusinessSchema(
+    "Adv. Pavan Rathod Law Office",
+    SITE_CONFIG.description,
+    SITE_CONFIG.phoneRaw,
+    SITE_CONFIG.email,
+    SITE_CONFIG.address,
+    SITE_CONFIG.url,
+    `${SITE_CONFIG.url}${SITE_CONFIG.profileImageUrl}`,
+    { latitude: "19.8459", longitude: "75.7849" }
+  );
+
+  const websiteSchema = createWebsiteSchema(
+    SITE_CONFIG.name,
+    SITE_CONFIG.description,
+    SITE_CONFIG.url,
+    `${SITE_CONFIG.url}${SITE_CONFIG.ogImageUrl}`
+  );
+
   const schemaOrg = {
     "@context": "https://schema.org",
     "@graph": [
+      attorneySchema,
+      localBusinessSchema,
+      websiteSchema,
       {
-        "@type": "Attorney",
-        "@id": `${SITE_CONFIG.url}/#attorney`,
-        name: SITE_CONFIG.fullName,
+        "@type": "ProfessionalService",
+        "@id": `${SITE_CONFIG.url}/#professional-service`,
+        name: "Legal Services",
         description: SITE_CONFIG.description,
-        url: SITE_CONFIG.url,
-        telephone: SITE_CONFIG.phoneRaw,
-        email: SITE_CONFIG.email,
-        image: `${SITE_CONFIG.url}/images/advocate-pavan-rathod.jpg`,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: `${SITE_CONFIG.address.street}, ${SITE_CONFIG.address.area}`,
-          addressLocality: SITE_CONFIG.address.city,
-          addressRegion: SITE_CONFIG.address.state,
-          postalCode: SITE_CONFIG.address.pincode,
-          addressCountry: "IN",
+        provider: {
+          "@type": "Attorney",
+          name: SITE_CONFIG.fullName,
+          url: SITE_CONFIG.url,
         },
-        geo: { "@type": "GeoCoordinates", latitude: "19.8459", longitude: "75.7849" },
-        openingHoursSpecification: [
-          { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], opens: "10:00", closes: "19:00" },
-        ],
-        areaServed: ["Maharashtra", "Madhya Pradesh", "Uttar Pradesh"],
-        knowsAbout: ["Family Law", "Civil Law", "Criminal Law", "Business Law", "Property Disputes"],
+        areaServed: SITE_CONFIG.states.map((state) => ({
+          "@type": "Place",
+          name: state,
+        })),
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Legal Services",
@@ -77,27 +132,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Criminal Law" } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Civil Law" } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Business Law" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Property Disputes Resolution" } },
           ],
         },
-        aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: "20", bestRating: "5", worstRating: "1" },
-      },
-      {
-        "@type": "LocalBusiness",
-        "@id": `${SITE_CONFIG.url}/#localbusiness`,
-        name: "Adv. Pavan Rathod Law Office",
-        url: SITE_CONFIG.url,
-        telephone: SITE_CONFIG.phoneRaw,
-        email: SITE_CONFIG.email,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: `${SITE_CONFIG.address.street}, ${SITE_CONFIG.address.area}`,
-          addressLocality: SITE_CONFIG.address.city,
-          addressRegion: SITE_CONFIG.address.state,
-          postalCode: SITE_CONFIG.address.pincode,
-          addressCountry: "IN",
-        },
-        priceRange: "₹₹",
-        image: `${SITE_CONFIG.url}/images/advocate-pavan-rathod.jpg`,
       },
     ],
   };
@@ -108,6 +145,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#001a40" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}

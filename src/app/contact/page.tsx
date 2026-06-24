@@ -1,12 +1,33 @@
 import type { Metadata } from "next";
-import { SITE_CONFIG, PRACTICE_AREAS } from "@/lib/constants";
+import { SITE_CONFIG, PAGE_METADATA, PRACTICE_AREAS } from "@/lib/constants";
 import ContactForm from "@/components/forms/ContactForm";
 import { Phone, Mail, MapPin, MessageCircle, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact Adv. Pavan Rathod | Free Legal Consultation - Jalna",
-  description: "Contact Advocate Pavan Rathod for a free initial legal consultation. Serving clients in Jalna, Maharashtra and across India. Call, WhatsApp or fill the form.",
+  title: PAGE_METADATA.contact.title,
+  description: PAGE_METADATA.contact.description,
+  keywords: ["contact", "consultation", "free consultation", "legal help", ...SITE_CONFIG.keywords],
   alternates: { canonical: `${SITE_CONFIG.url}/contact` },
+  openGraph: {
+    type: "website",
+    title: PAGE_METADATA.contact.title,
+    description: PAGE_METADATA.contact.description,
+    url: `${SITE_CONFIG.url}/contact`,
+    images: [
+      {
+        url: `${SITE_CONFIG.url}${SITE_CONFIG.ogImageUrl}`,
+        width: 1200,
+        height: 630,
+        alt: PAGE_METADATA.contact.title,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: PAGE_METADATA.contact.title,
+    description: PAGE_METADATA.contact.description,
+    images: [`${SITE_CONFIG.url}${SITE_CONFIG.ogImageUrl}`],
+  },
 };
 
 export default function ContactPage() {
