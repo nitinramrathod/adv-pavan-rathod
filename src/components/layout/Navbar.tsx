@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Menu, X, Phone, Sun, Moon, Scale } from "lucide-react";
 import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -31,8 +32,13 @@ export default function Navbar() {
       scrolled ? "bg-navy/95 backdrop-blur-md shadow-lg shadow-black/20" : "bg-transparent")}>
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 py-4">
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 bg-gold rounded-full flex items-center justify-center group-hover:scale-105 transition-transform">
-            <Scale className="w-5 h-5 text-navy" />
+          <div className="w-10 h-10 bg-gold-50 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform">
+            {/* <Scale className="w-5 h-5 text-navy" /> */}
+            <Image width={80} height={80} 
+                              src="/apple-touch-icon.png"
+                                alt="Adv. Pavan Rathod" 
+                                className="w-full h-full object-cover rounded-md" 
+                                />
           </div>
           <div>
             <div className="font-display text-white font-bold text-lg leading-tight">Adv. Pavan Rathod</div>

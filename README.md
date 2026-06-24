@@ -30,7 +30,7 @@ Required variables:
 ```
 RESEND_API_KEY=re_your_key_here
 FROM_EMAIL=noreply@advpavanrathod.in
-TO_EMAIL=advpavanrathod@gmail.com
+TO_EMAIL=adv.pavanrathod@gmail.com
 NEXT_PUBLIC_SITE_URL=https://advpavanrathod.in
 ```
 
@@ -89,6 +89,6 @@ src/
 ## Advocate Details
 - **Name:** Adv. Pavan Rathod, BA. LL.B.
 - **Phone:** +91 98238 85688
-- **Email:** advpavanrathod@gmail.com
+- **Email:** adv.pavanrathod@gmail.com
 - **Office:** Shop No. 3, Ambad, Jalna, Maharashtra
 - **Court:** Jalna District Court

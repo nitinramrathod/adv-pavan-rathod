@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
   phone: "+91 98238 85688",
   phoneRaw: "+919823885688",
   whatsapp: "919823885688",
-  email: "advpavanrathod@gmail.com",
+  email: "adv.pavanrathod@gmail.com",
   address: {
     street: "Shop No. 3",
     area: "Ambad",
@@ -23,13 +23,13 @@ export const SITE_CONFIG = {
   socialLinks: {
     whatsapp: "https://wa.me/919823885688",
     phone: "tel:+919823885688",
-    email: "mailto:advpavanrathod@gmail.com",
+    email: "mailto:adv.pavanrathod@gmail.com",
   },
   mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.8!2d75.7849!3d19.8459!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDUwJzQ1LjMiTiA3NcKwNDcnMDUuNiJF!5e0!3m2!1sen!2sin!4v1234567890",
   // OG Image URL
-  ogImageUrl: "/og-image.jpg",
+  ogImageUrl: "/og-image.png",
   // Advocate Profile Image
-  profileImageUrl: "/images/advocate-pavan-rathod.jpg",
+  profileImageUrl: "/images/adv-pavan-rathod-5.jpeg",
   // Comprehensive keywords by category
   keywords: [
     // General keywords

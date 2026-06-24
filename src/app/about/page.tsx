@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle, Award, MapPin, Scale, Phone, MessageCircle, BookOpen, Target, Heart } from "lucide-react";
 import { SITE_CONFIG, PAGE_METADATA } from "@/lib/constants";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: PAGE_METADATA.about.title,
@@ -82,8 +83,13 @@ export default function AboutPage() {
 
           <div className="bg-white/5 border border-white/10 rounded-3xl p-8">
             <div className="text-center mb-8">
-              <div className="w-32 h-32 bg-gold/10 border-2 border-gold/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Scale className="w-14 h-14 text-gold" />
+              <div className="w-44 h-32 bg-gold/10 border-2 border-gold/30 rounded-md flex items-center justify-center mx-auto mb-4">
+                {/* <Scale className="w-14 h-14 text-gold" /> */}
+                <Image width={80} height={80} 
+                  src="/images/adv-pavan-rathod-jalna-11.png"
+                    alt="Adv. Pavan Rathod" 
+                    className="w-full h-full object-cover rounded-md" 
+                    />
               </div>
               <h2 className="font-display text-2xl font-bold text-white">Adv. Pavan Rathod</h2>
               <p className="text-gold text-sm mt-1">BA. LL.B. | Enrolled Advocate</p>

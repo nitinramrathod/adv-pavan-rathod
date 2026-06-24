@@ -3,7 +3,7 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const FROM = process.env.FROM_EMAIL || "noreply@advpavanrathod.in";
-const TO = process.env.TO_EMAIL || "advpavanrathod@gmail.com";
+const TO = process.env.TO_EMAIL || "adv.pavanrathod@gmail.com";
 
 export async function sendContactEmail(data: {
   name: string;

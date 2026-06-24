@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Phone, MessageCircle, ChevronDown, Shield, Award, Users } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
+import Image from "next/image";
 
 const stats = [
   { label: "Cases Handled", value: 30, suffix: "+", icon: Shield },
@@ -96,9 +97,14 @@ export default function HeroSection() {
         <div className="relative">
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8">
             <div className="text-center mb-8">
-              <div className="w-28 h-28 bg-gold/10 border-2 border-gold/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                <div className="w-20 h-20 bg-gold/20 rounded-full flex items-center justify-center">
-                  <Shield className="w-10 h-10 text-gold" />
+              <div className="w-52 h-52 bg-gold/10 border-2 border-gold/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-48 h-48 bg-gold/20 rounded-full flex items-center justify-center">
+                  {/* <Shield className="w-10 h-10 text-gold" /> */}
+                  <Image width={80} height={80} 
+                  src="/images/adv-pavan-rathod-1.jpeg"
+                   alt="Adv. Pavan Rathod" 
+                   className="w-full h-full object-cover rounded-full" 
+                   />
                 </div>
               </div>
               <h2 className="font-display text-2xl font-bold text-white">Adv. Pavan Rathod</h2>

@@ -24,7 +24,7 @@ export default function CookiePolicyPage() {
         <h2>Managing Cookies</h2>
         <p>You can control cookies through your browser settings. Disabling cookies may affect website functionality.</p>
         <h2>Contact</h2>
-        <p>For cookie-related questions, email us at advpavanrathod@gmail.com.</p>
+        <p>For cookie-related questions, email us at adv.pavanrathod@gmail.com.</p>
       </div>
     </div>
   );
