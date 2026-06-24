@@ -41,7 +41,7 @@ export default function Navbar() {
                                 />
           </div>
           <div>
-            <div className="font-display text-white font-bold text-lg leading-tight">Adv. Pavan Rathod</div>
+            <div className={`font-display text-white font-bold text-lg leading-tight ${dark ? 'text-white' : 'text-gray-300'}`}>Adv. Pavan Rathod</div>
             <div className="text-gold text-xs">BA. LL.B. | Jalna, Maharashtra</div>
           </div>
         </Link>
@@ -49,7 +49,7 @@ export default function Navbar() {
         <ul className="hidden lg:flex items-center gap-6">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
-              <Link href={link.href} className="text-white/80 hover:text-gold transition-colors text-sm font-medium">
+              <Link href={link.href} className={`${(!dark && scrolled)  ? 'text-white/80' : 'text-gray-500'} hover:text-gold transition-colors text-sm font-medium`}>
                 {link.label}
               </Link>
             </li>
